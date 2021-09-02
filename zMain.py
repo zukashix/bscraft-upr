@@ -1,14 +1,15 @@
 # BSCraft 2.0 Updater (modified version of zukashix-modpack-loader)
 # Author(s): zukashix, BraxtonElmer
 
+import subprocess
 import requests
 import os
 import json
-import subprocess
 import zipfile
 import shutil
 import sys
 import time
+from clint.textui import progress
 
 DATA_DICT = {
     "new_install": True,
@@ -37,11 +38,14 @@ def downloadFile(file_url):
     r = requests.get(file_url, stream = True, headers=headers)
   
     with open(APPDATA + "\\zukashix.mpu\\patch.zip","wb") as ufile:
-        for chunk in r.iter_content(chunk_size=2048):
+        total_length = int(r.headers.get('content-length'))
+        for chunk in progress.bar(r.iter_content(chunk_size=1024), expected_size=(total_length/1024) + 1):
   
            # Writing one chunk at a time to file (No excessive memory usage on large-size files)
             if chunk:
                 ufile.write(chunk)
+                ufile.flush()
+    pass
 
 def checkForUpdate():
     print('Checking for updates...')
