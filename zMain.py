@@ -8,6 +8,7 @@ import subprocess
 import zipfile
 import shutil
 from sys import argv
+import time
 
 DATA_DICT = {
     "new_install": True,
@@ -40,12 +41,15 @@ def downloadFile(file_url):
                 ufile.write(chunk)
 
 def checkForUpdate():
+    print('Checking for updates...')
     def install():
         # Extract the ZIP
+        print('Extracting...')
         with zipfile.ZipFile(APPDATA + "\\zukashix.mpu\\patch.zip","r") as zipf:
             zipf.extractall(APPDATA + "\\zukashix.mpu\\")
 
         # Run Installer BAT
+        print('Installing...')
         subprocess.call([APPDATA + "\\zukashix.mpu\\client\\patcher.bat"])
 
         # Change local data version integer
@@ -59,13 +63,15 @@ def checkForUpdate():
 
         # Save new data
         json.dump(DATA_DICT, open(APPDATA + '\\zukashix.mpu\\local_data.json', 'w'))
-
+        
+        print('Cleaning Up...')
         # Cleanup
         shutil.rmtree(APPDATA + "\\zukashix.mpu\\client\\")
         os.remove(APPDATA + '\\zukashix.mpu\\patch.zip')
 
         # Create profile if using SKL
         if LNCHER == 'skl':
+            print('Creating profile...')
             profile_data = {
                 "name": "BSCraft 2.0",
                 "gameDir": APPDATA + "\\.minecraft\\BSCraft-2",
@@ -106,7 +112,7 @@ def checkForUpdate():
 
         # Lower than latest
         elif DATA_DICT['current_mp_version'] < data['latest_version']:
-            print('Updates are available!')
+            print('Updates are available! Downloading...')
             # Download patch by launcher
             if LNCHER == 'skl':
                 downloadFile(data['latest_url'])
@@ -114,9 +120,13 @@ def checkForUpdate():
                 downloadFile(data['latest_url_tl'])
             # Install Patch
             install()
+    print('Updates Installed, Program will exit in 5 seconds.')
+    time.sleep(5)
+    exit(0)
         
 
 def firstRun():
+    print('Initializing...')
     if '--reset' or '-r' in argv:
         shutil.rmtree(APPDATA + '\\zukashix.mpu\\')
 
@@ -147,3 +157,6 @@ def firstRun():
         json.dump(DATA_DICT, open(APPDATA + '\\zukashix.mpu\\local_data.json', 'w'))
         # Check for updates
         checkForUpdate()
+
+if __name__ == '__main__':
+    firstRun()
