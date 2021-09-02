@@ -74,7 +74,7 @@ def checkForUpdate():
             print('Creating profile...')
             profile_data = {
                 "name": "BSCraft 2.0",
-                "gameDir": APPDATA + "\\.minecraft\\BSCraft-2",
+                "gameDir": APPDATA + "\\.minecraft\\profiles\\BSCraft-2",
                 "lastVersionId": "1.16.5-forge-36.2.0",
                 "resolution": {
                     "width": 854,
