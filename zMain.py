@@ -31,7 +31,10 @@ def write_json(new_data, filename):
         json.dump(file_data, file, indent = 4)
 
 def downloadFile(file_url):
-    r = requests.get(file_url, stream = True)
+    headers = {
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0',
+    }
+    r = requests.get(file_url, stream = True, headers=headers)
   
     with open(APPDATA + "\\zukashix.mpu\\patch.zip","wb") as ufile:
         for chunk in r.iter_content(chunk_size=2048):
