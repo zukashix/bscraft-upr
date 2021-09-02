@@ -7,7 +7,7 @@ import json
 import subprocess
 import zipfile
 import shutil
-from sys import argv
+import sys
 import time
 
 DATA_DICT = {
@@ -34,7 +34,7 @@ def downloadFile(file_url):
     r = requests.get(file_url, stream = True)
   
     with open(APPDATA + "\\zukashix.mpu\\patch.zip","wb") as ufile:
-        for chunk in r.iter_content(chunk_size=1024):
+        for chunk in r.iter_content(chunk_size=2048):
   
            # Writing one chunk at a time to file (No excessive memory usage on large-size files)
             if chunk:
@@ -92,6 +92,7 @@ def checkForUpdate():
 
     # If modpack is not installed download Base Modpack
     if DATA_DICT['new_install'] == True:
+        print('Downloading Modpack...')
         # Download by launcher
         if LNCHER == 'skl':
             downloadFile(data['new_install_url'])
@@ -127,7 +128,9 @@ def checkForUpdate():
 
 def firstRun():
     print('Initializing...')
-    if '--reset' or '-r' in argv:
+    global DATA_DICT, LNCHER
+
+    if '--reset' in sys.argv:
         shutil.rmtree(APPDATA + '\\zukashix.mpu\\')
 
     try:
@@ -135,28 +138,28 @@ def firstRun():
         local_data = json.load(open(APPDATA + '\\zukashix.mpu\\local_data.json', 'r'))
 
         # Update file in memory
-        global DATA_DICT
         DATA_DICT = local_data
-
-        # Check for updates
-        checkForUpdate()
 
     except FileNotFoundError:
         # Create Application WorkDIR
         os.mkdir(APPDATA + '\\zukashix.mpu')
 
         # Ask for launcher and save the data
-        launcher = None
-        while launcher != 'skl' or 'tl':
+        while True:
             launcher = str(input("What launcher do you use? (Type \"tl\" for TLauncher or \"skl\" for any other launcher): "))
+            if launcher == 'tl' or 'skl':
+                break
+            else:
+                print('Incorrect Launcher Key.')
+                continue
 
-        global DATA_DICT, LNCHER
         DATA_DICT['launcher'] = launcher
         LNCHER = launcher
         # Save the data file locally
         json.dump(DATA_DICT, open(APPDATA + '\\zukashix.mpu\\local_data.json', 'w'))
-        # Check for updates
-        checkForUpdate()
+
+    # Check for updates
+    checkForUpdate()
 
 if __name__ == '__main__':
     firstRun()
