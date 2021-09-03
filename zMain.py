@@ -125,11 +125,11 @@ def checkForUpdate():
             print('You\'re up to date!')
         
         # Higher than stable
-        if DATA_DICT['current_mp_version'] > data['latest_version']:
+        elif DATA_DICT['current_mp_version'] > data['latest_version']:
             print('You\'re running an unstable release of BSCraft.')
 
         # Lower than latest
-        if DATA_DICT['current_mp_version'] < data['latest_version']:
+        elif DATA_DICT['current_mp_version'] < data['latest_version']:
             print('Updates are available! Downloading...')
             # Download patch by launcher
             if LNCHER == 'skl':
