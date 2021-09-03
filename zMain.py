@@ -46,7 +46,7 @@ def downloadFile(file_url):
             if chunk:
                 ufile.write(chunk)
                 ufile.flush()
-    pass
+    
 
 def checkForUpdate():
     print('Checking for updates...')
@@ -140,7 +140,7 @@ def checkForUpdate():
             install()
     print('Updates Installed, Program will exit in 5 seconds.')
     time.sleep(5)
-    exit(0)
+    sys.exit(0)
         
 
 def firstRun():
