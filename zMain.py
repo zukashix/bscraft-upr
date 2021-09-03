@@ -9,6 +9,7 @@ import zipfile
 import shutil
 import sys
 import time
+import psutil
 from clint.textui import progress
 
 DATA_DICT = {
@@ -79,6 +80,15 @@ def checkForUpdate():
         # Create profile if using SKL
         if LNCHER == 'skl':
             print('Creating profile...')
+            user_ram = round(psutil.virtual_memory().total/1000000000, 2)
+            if user_ram < 5:
+                alloc_ram= 3144
+            elif user_ram < 9:
+                alloc_ram= 5100
+            elif user_ram < 17:
+                alloc_ram= 9000
+            else:
+                alloc_ram = input("Enter allocated ram to run BSCraft 2")
             profile_data = {
                 "name": "BSCraft 2",
                 "gameDir": APPDATA + "\\.minecraft\\profiles\\BSCraft-2",
@@ -89,7 +99,7 @@ def checkForUpdate():
                     "fullscreen": False
                 },
                 "launcherVisibilityOnGameClose": "hide launcher and re-open when game closes",
-                "memoryMax": 3144
+                "memoryMax": alloc_ram
             }
 
             write_json(profile_data, APPDATA + '\\.minecraft\\launcher_profiles.json')
