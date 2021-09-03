@@ -1,4 +1,4 @@
-# BSCraft Updater (This description and the repository itself is not complete at all)
+# BSCraft Updater
 Updater Source Code And Version Checker for BSCraft 2.0 Modpack
 
 ## For Players
