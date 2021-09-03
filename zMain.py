@@ -134,7 +134,7 @@ def checkForUpdate():
             # Download patch by launcher
             if LNCHER == 'skl':
                 downloadFile(data['latest_url'])
-            elif LNCHER == 'tl':
+            if LNCHER == 'tl':
                 downloadFile(data['latest_url_tl'])
             # Install Patch
             install()
