@@ -12,4 +12,4 @@ Install the required modules (It's recommended to use Python 3.6+)<br>
 `$ python3 -m pip install -r requirements.txt`
 <br>
 Make required changes and build with your favorite EXE converter (PyInstaller Recommended)<br>
-`$ pyinstaller --onefile --exclude-module tkinter`
+`$ pyinstaller --onefile --name BSCraft-Updater --exclude-module tkinter --icon bscraft_logo_dcc_icon.ico zMain.py`
