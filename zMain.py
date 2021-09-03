@@ -86,7 +86,7 @@ def checkForUpdate():
             elif user_ram < 9:
                 alloc_ram= 5100
             elif user_ram < 17:
-                alloc_ram= 6200
+                alloc_ram= 9000
             else:
                 alloc_ram = input("Enter allocated ram to run BSCraft 2")
             profile_data = {
@@ -125,11 +125,11 @@ def checkForUpdate():
             print('You\'re up to date!')
         
         # Higher than stable
-        elif DATA_DICT['current_mp_version'] > data['latest_version']:
+        if DATA_DICT['current_mp_version'] > data['latest_version']:
             print('You\'re running an unstable release of BSCraft.')
 
         # Lower than latest
-        elif DATA_DICT['current_mp_version'] < data['latest_version']:
+        if DATA_DICT['current_mp_version'] < data['latest_version']:
             print('Updates are available! Downloading...')
             # Download patch by launcher
             if LNCHER == 'skl':
