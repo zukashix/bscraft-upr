@@ -156,6 +156,7 @@ def firstRun():
 
         # Update file in memory
         DATA_DICT = local_data
+        LNCHER = local_data['launcher']
 
     except FileNotFoundError:
         # Create Application WorkDIR
