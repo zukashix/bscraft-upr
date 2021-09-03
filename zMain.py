@@ -86,7 +86,7 @@ def checkForUpdate():
             elif user_ram < 9:
                 alloc_ram= 5100
             elif user_ram < 17:
-                alloc_ram= 9000
+                alloc_ram= 6200
             else:
                 alloc_ram = input("Enter allocated ram to run BSCraft 2")
             profile_data = {
