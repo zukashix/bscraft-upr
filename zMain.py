@@ -26,7 +26,7 @@ def write_json(new_data, filename):
         # First we load existing data into a dict.
         file_data = json.load(file)
         # Join new_data with file_data inside profiles
-        file_data["profiles"]["BSCraft 2.0"] = new_data
+        file_data["profiles"]["BSCraft 2"] = new_data
         # Sets file's current position at offset.
         file.seek(0)
         # convert back to json.
