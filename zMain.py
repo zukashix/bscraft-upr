@@ -113,7 +113,7 @@ def checkForUpdate():
         # Download by launcher
         if LNCHER == 'skl':
             downloadFile(data['new_install_url'])
-        elif LNCHER == 'tl':
+        if LNCHER == 'tl':
             downloadFile(data['new_install_url_tl'])
         # Install
         install()
