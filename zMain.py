@@ -88,7 +88,7 @@ def checkForUpdate():
             elif user_ram < 17:
                 alloc_ram= 9000
             else:
-                alloc_ram = input("Enter allocated ram to run BSCraft 2")
+                alloc_ram = input("Enter allocated ram in MB to run BSCraft 2: ")
             profile_data = {
                 "name": "BSCraft 2",
                 "gameDir": APPDATA + "\\.minecraft\\profiles\\BSCraft-2",
