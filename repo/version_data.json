@@ -1,7 +1,7 @@
 {
-  "latest_version": 2,
-  "latest_url": "http://updater.braxtonelmer.com/BSCraft-versions/v2.1/BSCraft-2.1-SKL.zip",
+  "latest_version": 3,
+  "latest_url": "https://updater.braxtonelmer.com/BSCraft-versions/v3.0/BSCraft-3.0-SKL.zip",
   "new_install_url": "http://updater.braxtonelmer.com/BSCraft-versions/v2.0/BSCraft-20-SKL.zip",
-  "latest_url_tl": "http://updater.braxtonelmer.com/BSCraft-versions/v2.1/BSCraft-2.1-TL.zip",
+  "latest_url_tl": "https://updater.braxtonelmer.com/BSCraft-versions/v3.0/BSCraft-3.0-TL.zip",
   "new_install_url_tl": "http://updater.braxtonelmer.com/BSCraft-versions/v2.0/BSCraft-20-TL.zip"
 }
