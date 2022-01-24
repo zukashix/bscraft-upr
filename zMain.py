@@ -36,7 +36,7 @@ def downloadFile(file_url):
     headers = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0',
     }
-    r = requests.get(file_url, stream = True, headers=headers)
+    r = requests.get(file_url, stream = True, headers=headers, verify=False)
     print('# fetch {}'.format(file_url))
     with open(APPDATA + "\\zukashix.mpu\\patch.zip","wb") as ufile:
         total_length = int(r.headers.get('content-length'))
