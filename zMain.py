@@ -1,4 +1,4 @@
-# BSCraft 2.0 Updater (modified version of zukashix-modpack-loader)
+# BSCraft 3.0 Updater (modified version of zukashix-modpack-loader)
 # Author(s): zukashix, BraxtonElmer
 
 import subprocess
@@ -26,7 +26,7 @@ def write_json(new_data, filename):
         # First we load existing data into a dict.
         file_data = json.load(file)
         # Join new_data with file_data inside profiles
-        file_data["profiles"]["BSCraft 2"] = new_data
+        file_data["profiles"]["BSCraft 3"] = new_data
         # Sets file's current position at offset.
         file.seek(0)
         # convert back to json.
@@ -37,7 +37,7 @@ def downloadFile(file_url):
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0',
     }
     r = requests.get(file_url, stream = True, headers=headers)
-  
+    print('# fetch {}'.format(file_url))
     with open(APPDATA + "\\zukashix.mpu\\patch.zip","wb") as ufile:
         total_length = int(r.headers.get('content-length'))
         for chunk in progress.bar(r.iter_content(chunk_size=1024), expected_size=(total_length/1024) + 1):
@@ -90,7 +90,7 @@ def checkForUpdate():
             else:
                 alloc_ram = input("Enter allocated ram in MB to run BSCraft 2: ")
             profile_data = {
-                "name": "BSCraft 2",
+                "name": "BSCraft 3",
                 "gameDir": APPDATA + "\\.minecraft\\profiles\\BSCraft-2",
                 "lastVersionId": "1.16.5-forge-36.2.0",
                 "resolution": {
